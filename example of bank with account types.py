@@ -1,64 +1,66 @@
 class Bank:
     
-    def openaccount(self,cname,acno,balance):
-        print("hello",cname,
-              "your account number is",acno,
-              "with initial balance",balance,"rs")
+    def openaccount(self, cname, acno, balance):
+        self.cname = cname
+        self.acno = acno
+        self.balance = balance  # Store balance as an instance variable
+        print(f"Hello {cname}, your account number is {acno} with initial balance of {balance} rs.")
+    
+    def deposite(self, amount):
+        self.balance += amount  # Update the balance with the deposit
+        print(f"Your balance is: {self.balance} rs.")
 
-    def deposite(self,amount):
-        self.b=amount+balance
-        print("your  balance is:",self.b)
-
-    def withdraw(self,amount):
-        if amount<=self.b:
-            self.b=self.b-amount
-            print("your balance is:",self.b)
-
+    def withdraw(self, amount):
+        if amount <= self.balance:
+            self.balance -= amount  # Deduct from the balance if sufficient funds are available
+            print(f"Your balance is: {self.balance} rs.")
         else:
-            print("you have insufficient balance")
+            print("You have insufficient balance.")
 
     def checkbalance(self):
-        print("your availale balance is: ",self.b)
+        print(f"Your available balance is: {self.balance} rs.")
 
-b1=Bank()
+b1 = Bank()
 
 while True:
-    print("1. openaccount")
-    print("2. deposite")
-    print("3. withdraw")
-    print("4. checkbalance")
-    print("5. exit")
+    print("\n1. Open account")
+    print("2. Deposit")
+    print("3. Withdraw")
+    print("4. Check balance")
+    print("5. Exit")
 
-    choice=int(input("enter your choice: "))
+    choice = int(input("Enter your choice: "))
 
-    if choice==1:
-        cname=input("Enter your name:")
-        acno=int(input("enter your account number:"))
-        balance=int(input("enter your initial balance:"))
+    if choice == 1:
+        cname = input("Enter your name: ")
+        acno = int(input("Enter your account number: "))
+        balance = int(input("Enter your initial balance: "))
         
+        # Account type selection (Saving or Current)
         while True:
-            print("1. saving account")
-            print("2. current account")
-            choice=int(input("enter your choice: "))
-            if choice==1:
-                print("your account type is saving account")
+            print("1. Saving account")
+            print("2. Current account")
+            acc_choice = int(input("Enter your choice for account type: "))
+            if acc_choice == 1:
+                print("Your account type is Saving account.")
             else:
-                print("your account type is current account")
+                print("Your account type is Current account.")
             break
         
-        b1.openaccount(cname,acno,balance)
-    elif choice==2:
-        amount=int(input("enter deposite amount:"))
+        b1.openaccount(cname, acno, balance)
+    
+    elif choice == 2:
+        amount = int(input("Enter deposit amount: "))
         b1.deposite(amount)
-    elif choice==3:
-        amount=int(input("enter withdraw amount:"))
+    
+    elif choice == 3:
+        amount = int(input("Enter withdrawal amount: "))
         b1.withdraw(amount)
-    elif choice==4:
+    
+    elif choice == 4:
         b1.checkbalance()
-    elif choice==5:
+    
+    elif choice == 5:
         break
     else:
-        print("invalid option")
-
-
-
+        print("Invalid option.")
